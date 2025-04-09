@@ -24,12 +24,15 @@ class LandingController extends Controller
 
         $products = [];
         $addons = [];
+        $promos = [];
 
         foreach ($productQuery as $key => $value) {
             if ($value->type == 1) {
                 $products[] = $value;
             } else if ($value->type == 2) {
                 $addons[] =  $value;
+            } else if ($value->type == 3) {
+                $promos[] =  $value;
             }
         }
 
@@ -41,6 +44,7 @@ class LandingController extends Controller
         return view('landing.index', [
             'products' => $products,
             'addons' => $addons,
+            'promos' => $promos,
             'testimoni' => $testimonieQuery,
             'vidio' => $vidioQuery,
             'areaKota' => $areaKota,
@@ -55,18 +59,22 @@ class LandingController extends Controller
 
         $products = [];
         $addons = [];
+        $promos = [];
 
         foreach ($productQuery as $key => $value) {
             if ($value->type == 1) {
                 $products[] = $value;
             } else if ($value->type == 2) {
                 $addons[] =  $value;
+            } else if ($value->type == 3) {
+                $promos[] =  $value;
             }
         }
 
         return view('landing.product', [
             'products' => $products,
-            'addons' => $addons
+            'addons' => $addons,
+            'promos' => $promos
         ]);
     }
 }

@@ -52,7 +52,8 @@ class ProductResource extends Resource
                         Select::make('type')
                             ->options([
                                 1 => 'Paket Internet',
-                                2 => 'Add On'
+                                2 => 'Add On',
+                                3 => 'Paket Promo'
                             ])
                             ->default(1)
                             ->disablePlaceholderSelection()
@@ -98,7 +99,8 @@ class ProductResource extends Resource
                 TextColumn::make('price'),
                 TextColumn::make('type')->enum([
                     1 => 'Paket Internet',
-                    2 => 'Add On'
+                    2 => 'Add On',
+                    3 => 'Paket Promo'
                 ]),
                 TextColumn::make('status')
                     ->label('Is Published')->enum([
