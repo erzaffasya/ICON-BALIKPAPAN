@@ -7,75 +7,54 @@ use Illuminate\Support\Facades\Http;
 
 class Watzap
 {
+    public $url;
+    public $token;
+    public $channel;
+    public $number;
     public function __construct()
     {
-        $this->url = env('WAT_URL');
-        $this->token = env('WAT_TOKEN');
-        $this->key = env('WAT_NUMBER_KEY');
+        $this->url = env('WA_URL');
+        $this->token = env('WA_TOKEN');
+        $this->channel = env('WA_CHANNEL_ID');
+        $this->number = env('WA_NUMBER_ID');
     }
 
-    public function status()
+    public function sendMessage($phone, $otp)
     {
-        $response = $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(sprintf('%s/checking_key', $this->url), [
-            "api_key" => $this->token
-        ]);
+        $requestData = [
+            "channelID" => $this->channel,
+            "phoneNumberID" => $this->number,
+            "phone" => $phone,
+            "templateName" => "otp_whatsapp",
+            "languageCode" => "id",
+            "parameters" => [
+                "header" => [],
+                "body" => [
+                    [
+                        "name" => "otp",
+                        "value" => (string)$otp
+                    ]
+                ],
+                "footer" => [],
+                "buttons" => []
+            ],
+            "withCase" => true,
+            "topicID" => 1
+        ];
 
-        return $response;
-    }
+        // dd(json_encode($requestData, JSON_PRETTY_PRINT));
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'API-Key' => $this->token,
+            'User-Agent' => ''
+        ])->post($this->url . 'api/integration/v1/inbox/send_templated_message_whatsappba', $requestData);
 
-    public function groupGrab()
-    {
-        $response = $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(sprintf('%s/groups', $this->url), [
-            "api_key" => $this->token,
-            "number_key" =>  $this->key
-        ]);
-
-        return $response;
-    }
-
-    public function sendMessage($phone, $message)
-    {
-
-        //Taptalk
-        // $response = $response = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     "API-key" => $this->token
-        // ])->post(sprintf($this->url), [
-        //     'channelID' => $this->key,
-        //     'messageType' => 'text',
-        //     'phone' => $phone,
-        //     'body' => $message
-        // ]);
-
-        //Watzapp
-        $response = $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(sprintf('%s/send_message', $this->url), [
-            "api_key" => $this->token,
-            'number_key' => $this->key,
-            'phone_no' => $phone,
-            'message' => $message
-        ]);
-
-        return $response;
-    }
-
-    public function sendMessageGroup($groupId, $message)
-    {
-
-        $response = $response = Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post(sprintf('%s/send_message_group', $this->url), [
-            "api_key" => $this->token,
-            'number_key' => $this->key,
-            'group_id' => $groupId,
-            'message' => $message
-        ]);
-
-        return $response;
+        $responseData = $response->json();
+        // dd($responseData);
+        if ($response->successful()) {
+            return $responseData;
+        } else {
+            dd('Request failed with status: ' . $response->status());
+        }
     }
 }

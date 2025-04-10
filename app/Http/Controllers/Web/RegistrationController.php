@@ -28,9 +28,9 @@ class RegistrationController extends Controller
     public function requestOtp(Request $request)
     {
         $otp = rand(100000, 900000);
-        $message = sprintf("%s ini adalah kode otp anda, jangan bagikan kode ini kepada siapapun.\n\npesan ini dikirim melalui layanan IconNet", $otp);
+        // $message = sprintf("%s ini adalah kode otp anda, jangan bagikan kode ini kepada siapapun.\n\npesan ini dikirim melalui layanan IconNet", $otp);
         try {
-            $res = (new Watzap)->sendMessage($request->get('phone'), $message);
+            $res = (new Watzap)->sendMessage($request->get('phone'), $otp);
             WhatsappOtp::create([
                 'number' => $request->get('phone'),
                 'token' => $otp,
@@ -54,31 +54,31 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
+        // YANG TIDAK ADA  -> NIK, COORDINATE, FILE
         $whatsappOtp = WhatsappOtp::where('token', $request->otp)->where('number', $request->telp)->first();
-
         $request->validate([
             'name' => 'required',
             'address' => 'required',
             'telp' => 'required|unique:App\Models\Formregistration,telp',
             'idcustomer' => 'required',
             'email' => 'required',
-            'coordinate' => 'required',
+            // 'coordinate' => 'required',
             'product_id' => 'required',
             'nik' => 'nullable',
             'status' => 'nullable',
             'otp' => 'required',
             'file' => 'nullable'
         ]);
-
         DB::beginTransaction();
 
         try {
 
             if ($whatsappOtp) {
-                if ($request->file('file')->isValid()) {
-                    $file = $request->file('file');
-                    $file->storeAs('/public/register/ktp', $file->getClientOriginalName());
-                }
+                // dd('asds');
+                // if ($request->file('file')->isValid()) {
+                //     $file = $request->file('file');
+                //     $file->storeAs('/public/register/ktp', $file->getClientOriginalName());
+                // }
                 $form = new Formregistration;
 
                 $form->fill([
@@ -87,18 +87,17 @@ class RegistrationController extends Controller
                     'telp' => $request->telp,
                     'idcustomer' => $request->idcustomer,
                     'email' => $request->email,
-                    'coordinate' => json_encode($request->coordinate),
+                    // 'coordinate' => json_encode($request->coordinate),
                     'product_id' => $request->product_id,
                     'nik' => $request->nik,
                     'status' => 0,
-                    'file' =>  sprintf('/register/ktp/%s', $file->getClientOriginalName())
+                    // 'file' =>  sprintf('/register/ktp/%s', $file->getClientOriginalName())
                 ]);
 
                 $form->save();
                 $form->notificationSuccess($form);
 
                 $whatsappOtp->update(['active' => 0]);
-
                 $message = sprintf("Yeay, pemesanan paket internet anda telah kami terima dan akan segera kami proses. terimakasih telah mempercayakan internet anda pada kami. \n\n Salam hangat kami, ICONNET 💌.");
                 (new Watzap)->sendMessage($request->telp, $message);
                 DB::commit();

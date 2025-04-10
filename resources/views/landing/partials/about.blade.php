@@ -33,3 +33,47 @@
         </div>
     </div>
 </div>
+<div class="max-w-7xl mx-auto px-12 pb-10" data-aos="fade-down">
+    <!-- features -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 py-10 mx-auto">
+        <a href="{{url('/product/2/registration')}}" target="_blank" class="space-y-6 border-b-2 border p-6 shadow-xl rounded-3xl hover:bg-brands-primary group"
+            data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center justify-center space-x-4">
+                <button class="rounded-full bg-brands-primary group-hover:bg-white py-4 px-4">
+                    <i class="fas fa-user fa-3x group-hover:text-brands-primary text-white"></i>
+                </button>
+                <div class="space-x-2 text-center">
+                    <p class="text-xl font-semibold text-brands-primary group-hover:text-white">
+                        Tertarik berlangganan? Yuk, daftar sekarang!
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a href="http://wa.me/62811599292" target="_blank" class="space-y-6 border-b-2 border p-6 shadow-xl rounded-3xl hover:bg-brands-primary group"
+            data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center justify-center space-x-4">
+                <button class="rounded-full bg-brands-primary group-hover:bg-white py-4 px-4">
+                    <i class="fas fa-comment-dots fa-3x group-hover:text-brands-primary text-white"></i>
+                </button>
+                <div class="space-x-2 text-center">
+                    <p class="text-xl font-semibold text-brands-primary group-hover:text-white">
+                        Tertarik berlangganan? Yuk, daftar sekarang!
+                    </p>
+                </div>
+            </div>
+        </a>
+        <a href="{{url('/promo')}}" target="_blank" class="space-y-6 border-b-2 border p-6 shadow-xl rounded-3xl hover:bg-brands-primary group"
+            data-aos="fade-up" data-aos-delay="500">
+            <div class="flex items-center justify-center space-x-4">
+                <button class="rounded-full bg-brands-primary group-hover:bg-white py-4 px-4">
+                    <i class="fas fa-wifi fa-3x group-hover:text-brands-primary text-white"></i>
+                </button>
+                <div class="space-x-2 text-center">
+                    <p class="text-xl font-semibold text-brands-primary group-hover:text-white">
+                        Lagi cari paket internet? Lihat paket-paket unggulan Iconnet!
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
