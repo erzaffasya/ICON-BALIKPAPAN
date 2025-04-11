@@ -57,7 +57,7 @@
                 </button>
                 <div class="space-x-2 text-center">
                     <p class="text-xl font-semibold text-brands-primary group-hover:text-white">
-                        Tertarik berlangganan? Yuk, daftar sekarang!
+                        Gak mau ribet? Langsung langganan lewat WhatsApp!
                     </p>
                 </div>
             </div>
