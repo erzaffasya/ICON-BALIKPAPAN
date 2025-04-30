@@ -36,7 +36,7 @@
                     <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 text-center">
                         Berbagai paket yang dapat sesuai dengan layanan kebutuhan internet dan multimedia anda.
                     </p>
-                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
+                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-4 lg:divide-x lg:divide-y-0 xl:-mx-4">
                         @foreach ($products as $product)
                             <x-CardProduct :product="$product" />
                         @endforeach
@@ -52,7 +52,7 @@
                     <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 text-center">
                         Berbagai paket yang dapat sesuai dengan layanan kebutuhan internet dan multimedia anda.
                     </p>
-                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4">
+                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-4 lg:divide-x lg:divide-y-0 xl:-mx-4">
                         @foreach ($promos as $product)
                             <x-CardProductPromo :product="$product" />
                         @endforeach
@@ -68,7 +68,7 @@
                     <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 text-center">
                         Berbagai add on yang dapat sesuai dengan layanan kebutuhan multimedia anda.
                     </p>
-                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-3 lg:divide-x lg:divide-y-0 xl:-mx-4 mt-4">
+                    <div class="isolate grid max-w-sm grid-cols-1 gap-5 divide-y divide-gray-100 sm:mx-auto lg:-mx-8 lg:mt-0 lg:max-w-none lg:grid-cols-4 lg:divide-x lg:divide-y-0 xl:-mx-4 mt-4">
                         @foreach ($addons as $addons)
                             <x-CardAddons :addons="$addons" />
                         @endforeach
