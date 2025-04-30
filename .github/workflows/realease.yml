@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd ~/iconnect.borneo-ti.co.id
+            cd ~/iconnet-kalimantan.id
             git pull origin main
         env:
           SSH_AUTH_SOCK: /tmp/ssh_auth_sock
