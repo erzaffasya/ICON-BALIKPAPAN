@@ -19,7 +19,6 @@ class LandingController extends Controller
     public function index()
     {
         $productQuery = Product::where('status', true)
-            ->limit(16)
             ->get();
 
         $products = [];
